@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVisor - Sign Up</title>
+
+    <!-- FontAwesome CDN for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style123.css"> 
+    <link rel="stylesheet" href="login.css"> <!-- External CSS for Login Form -->
+
+    <style>
+        /* Main styles (similar to your previous design) */
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --navbar-bg: #2063e8;
+            --navbar-text: #ffffff;
+            --button-bg: #2063e8;
+            --button-hover: #6699ff;
+            --footer-bg: #2063e8;
+            --icon-color: #000000;
+        }
+
+        .dark-mode {
+            --bg-color: #181818;
+            --text-color: #ffffff;
+            --navbar-bg: #0d3b66;
+            --navbar-text: #ffffff;
+            --button-bg: #0d3b66;
+            --button-hover: #577dcf;
+            --footer-bg: #0d3b66;
+            --icon-color: #ffffff;
+        }
+
+      
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="#" class="brand">
+            <img src="Eduvisor-removebg-preview.png" alt="EduVisor Logo" height="50">
+        </a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <button class="toggle-btn" id="theme-toggle">
+                <img src="images-removebg-preview.png" alt="Toggle Theme" id="theme-icon" width="30">
+            </button>
+        </div>
+    </div>
+
+    <!-- Sign-Up Form Content -->
+    <div class="content">
+        <div class="container">
+            <div class="login_container">
+                <div class="login_title">
+                    <span>Sign Up</span>
+                </div>
+
+                <form id="signup-form">
+                    <div class="input_wrapper">
+                        
+                        <input type="text" id="username" class="input_field" required>
+                        <label class="label" for="username">Username</label>
+                    </div>
+
+                    <div class="input_wrapper">
+                        
+                        <input type="email" id="email" class="input_field" required>
+                        <label class="label" for="email">Email</label>
+                    </div>
+
+                    <div class="input_wrapper">
+                        
+                        <input type="password" id="password" class="input_field" required>
+                        <label class="label" for="password">Password</label>
+                    </div>
+
+                    <div class="input_wrapper">
+                        
+                        <input type="password" id="confirm-password" class="input_field" required>
+                        <label class="label" for="confirm-password">Confirm Password</label>
+                    </div>
+
+                    <div class="api-icons">
+                        <a href="https://api.example.com" target="_blank">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://api.example.com" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://api.example.com" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+
+                    <div class="input_wrapper">
+                        <input type="submit" class="input__submit" value="Sign Up">
+                    </div>
+
+                    <div class="signup">
+                        <p>Already have an account? <a href="#login-form" id="show-login">Sign in</a></p>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Login Form Content -->
+            <div class="login_container" id="login-form" style="display: none;">
+                <div class="login_title">
+                    <span>Login</span>
+                </div>
+
+                <form id="login-form">
+                    <div class="input_wrapper">
+                        <span class="icon">
+                            <i class="fa fa-user"></i> <!-- Icon for Username -->
+                        </span>
+                        <input type="text" id="login-username" class="input_field" required>
+                        <label class="label" for="login-username">Username</label>
+                    </div>
+
+                    <div class="input_wrapper">
+                        <span class="icon" id="toggle-password-visibility-login">
+                            <i class="fa fa-eye"></i> <!-- Toggle icon for password visibility -->
+                        </span>
+                        <input type="password" id="login-password" class="input_field" required>
+                        <label class="label" for="login-password">Password</label>
+                    </div>
+
+                    <div class="input_wrapper">
+                        <input type="submit" class="input__submit" value="Login">
+                    </div>
+
+                    <div class="signup">
+                        <p>Don't have an account? <a href="#signup-form" id="show-signup">Sign up</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="https://twitter.com/eduvisor"><i class="fab fa-twitter"></i></a>
+            <a href="https://facebook.com/eduvisor"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://instagram.com/eduvisor"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 EduVisor. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            themeIcon.src = document.body.classList.contains('dark-mode') ? 'images-removebg-preview.png' : 'images-removebg-preview.png'; // Change to the dark mode icon if available
+        });
+
+        // Show/Hide login form
+        const showLoginBtn = document.getElementById('show-login');
+        const showSignupBtn = document.getElementById('show-signup');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+
+        showLoginBtn.addEventListener('click', () => {
+            loginForm.style.display = 'block';
+            signupForm.parentElement.style.display = 'none';
+        });
+
+        showSignupBtn.addEventListener('click', () => {
+            signupForm.parentElement.style.display = 'block';
+            loginForm.style.display = 'none';
+        });
+
+        // Toggle password visibility functionality for both forms
+        const togglePasswordVisibility = (inputId, iconId) => {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            passwordInput.type = passwordInput.type === 'password' ? 'text' : 'password';
+            icon.innerHTML = passwordInput.type === 'password' ? '<i class="fa fa-eye"></i>' : '<i class="fa fa-eye-slash"></i>';
+        };
+
+        document.getElementById('toggle-password-visibility').addEventListener('click', () => togglePasswordVisibility('password', 'toggle-password-visibility'));
+        document.getElementById('toggle-password-visibility-login').addEventListener('click', () => togglePasswordVisibility('login-password', 'toggle-password-visibility-login'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduVisor</title>
+
+    <!-- Latest FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-color: #000000;
+            --navbar-bg: #2063e8;
+            --navbar-text: #ffffff;
+            --button-bg: #2063e8;
+            --button-hover: #6699ff;
+            --footer-bg: #2063e8;
+            --triangle-color: #dfe2e8;
+            --icon-color: #000000; /* Black icons in light mode */
+        }
+
+        .dark-mode {
+            --bg-color: #181818;
+            --text-color: #ffffff;
+            --navbar-bg: #0d3b66;
+            --navbar-text: #ffffff;
+            --button-bg: #0d3b66;
+            --button-hover: #577dcf;
+            --footer-bg: #0d3b66;
+            --triangle-color: rgba(255, 255, 255, 0.1);
+            --icon-color: #ffff; /* Gold icons in dark mode */
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 24px;
+            background-color: var(--navbar-bg);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .brand {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .navbar .brand img {
+            margin-right: 10px;
+        }
+
+        .navbar .links {
+            display: flex;
+            margin-right: 15px;
+        }
+
+        .navbar a {
+            font-weight: 1000;
+            display: block;
+            color: var(--navbar-text);
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .navbar a:hover {
+            background-color: var(--button-hover);
+        }
+
+        .content {
+            text-align: center;
+            padding: 50px;
+            margin-top: 70px;
+            height: 600px;
+            position: relative;
+        }
+
+        .content h1 {
+            font-size: 36px;
+            font-weight: 500;
+        }
+
+        .footer {
+            background-color: var(--footer-bg);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .footer .social-icons {
+            margin-top: 10px;
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            display: inline-block;
+            color: var(--icon-color); /* Use icon color variable */
+            text-decoration: none;
+        }
+
+        .social-icons a i {
+            font-size: 30px;
+        }
+
+        table {
+            margin: 20px auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        th, td {
+            border: 0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th img, td img {
+            border-radius: 12px;
+            width: 345px;
+            height: 380px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: var(--button-bg);
+            color: white;
+            border: 2px solid var(--text-color);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            text-decoration: none; /* Ensure no underline in the button */
+            display: inline-block; /* Make it an inline block for spacing */
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+            padding-right: 30px;
+        }
+
+        button:hover::after {
+            content: "→";
+            font-size: 18px;
+            position: absolute;
+            margin-left: 10px;
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        .toggle-btn {
+            background-color: transparent;
+            color: var(--navbar-text);
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .toggle-btn:hover {
+            color: var(--button-hover);
+        }
+
+        .toggle-btn img {
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="#" class="brand">
+            <img src="Eduvisor-removebg-preview.png" alt="EduVisor Logo" height="50">
+        </a>
+        <div class="links">
+            <a href="index.html">Home</a>
+            <button class="toggle-btn" id="theme-toggle">
+                <img src="images-removebg-preview.png" alt="Toggle Theme" id="theme-icon">
+            </button>
+        </div>
+    </div>
+
+    <div class="content">
+        <h1>Recommended Materials</h1>
+
+        <table>
+            <tr>
+                <th>
+                    <a href="https://www.bing.com/ck/a?!&&p=9852d5fecab1693cJmltdHM9MTcyODE3MjgwMCZpZ3VpZD0wZDM3ODJhYy1hOTUyLTY1MWEtM2ZjZS05MThjYTg1MjY0NTYmaW5zaWQ9NTIxMA&ptn=3&ver=2&hsh=3&fclid=0d3782ac-a952-651a-3fce-918ca8526456&psq=mathpapa&u=a1aHR0cHM6Ly93d3cubWF0aHBhcGEuY29tLw&ntb=1"><img src="sololingual.jpg" alt="Games"></a>
+                    <a href="https://www.bing.com/ck/a?!&&p=9852d5fecab1693cJmltdHM9MTcyODE3MjgwMCZpZ3VpZD0wZDM3ODJhYy1hOTUyLTY1MWEtM2ZjZS05MThjYTg1MjY0NTYmaW5zaWQ9NTIxMA&ptn=3&ver=2&hsh=3&fclid=0d3782ac-a952-651a-3fce-918ca8526456&psq=mathpapa&u=a1aHR0cHM6Ly93d3cubWF0aHBhcGEuY29tLw&ntb=1"><button>Games </button></a>
+                </th>
+                <th>
+                    <a href="https://forms.office.com/Pages/DesignPageV2.aspx?prevorigin=Marketing&origin=NeoPortalPage&subpage=design&id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__VNwU1dUMTRYNzVGVFBERTVMUVBBTllCVDZHQUpZMS4u"><img src="skills.jpg" alt="Games"></a>
+                    <a href="https://forms.office.com/Pages/DesignPageV2.aspx?prevorigin=Marketing&origin=NeoPortalPage&subpage=design&id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__VNwU1dUMTRYNzVGVFBERTVMUVBBTllCVDZHQUpZMS4u"><button>Personalised Quizzes</button></a>
+                </th>
+                <th>
+                    <a href="https://www.safmh.org/help-desk/"><img src="people-meeting-support-group_23-2151079553.avif" alt="Games"></a>
+                    <a href="https://www.safmh.org/help-desk/"><button>Book a Psychologist</button></a>
+                </th>
+                
+                <th>
+                    <a href=""><img src="sololingual.jpg" alt="Games"></a>
+                    <a href="#"><button>View More</button></a>
+                </th>
+            </tr>
+        </table>
+    </div>
+    
+    <footer>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://twitter.com" target="_blank">
+                <i class="fab fa-twitter"></i>
+            </a>
+            <a href="https://instagram.com" target="_blank">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <p> &copy;2024 All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        let isDarkMode = false;
+
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            isDarkMode = !isDarkMode;
+
+            const socialIcons = document.querySelectorAll('.social-icons a i');
+
+            if (isDarkMode) {
+                themeIcon.src = 'sun-removebg-preview.png';  
+                themeIcon.alt = 'Light Mode';
+            } else {
+                themeIcon.src = 'images-removebg-preview.png'; 
+                themeIcon.alt = 'Dark Mode';
+            }
+
+            // Change social icons color dynamically
+            socialIcons.forEach(icon => {
+                icon.style.color = isDarkMode ? '#ffff' : '#000000'; // Gold in dark mode, black in light mode
+            });
+        });
+    </script>
+
+</body>
+</html>

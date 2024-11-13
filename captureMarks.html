@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathematics- Grade 12 Only</title>
+    <style>
+        /* General body styling */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        /* Header styling */
+        header {
+            background-color: #2063e8;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        nav {
+            display: inline-block;
+            margin-left: 50px;
+          
+        }
+        header img{
+            height: 34px;
+        }
+
+
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* Main content container styling */
+        .content {
+            margin: 40px auto;
+            padding: 20px;
+            width: 60%;
+            text-align: center;
+        }
+
+        .content h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        table, th, td {
+            border: 2px solid black;
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        th {
+            font-weight: bold;
+        }
+
+        /* Button styling */
+        .btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #212121;
+            color: white;
+            border-radius: 10;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #838784;
+        }
+
+        /* Footer styling */
+        footer {
+            background-color: #d3d3d3;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Input styling */
+        input[type="text"], input[type="number"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <img src="Eduvisor-removebg-preview.png" alt="">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="content">
+        <h2>Mathematics- Grade 12 Only</h2>
+    <form action="submits.php" method="POST">
+            <table id="marksTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Marks (0-100)</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <tr>
+                        <td><input type="text" name="name[]" placeholder="Enter name"></td>
+                        <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
+                        <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button type="button" class="btn" id="addRowBtn">Add Row</button>
+            <br>
+            <button type="submit" class="btn">Submit</button>
+        </form>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>Developed @ EduInnovates</p>
+    </footer>
+
+    <script>
+        // Get references to elements
+        const addRowBtn = document.getElementById('addRowBtn');
+        const tableBody = document.getElementById('tableBody');
+
+        // Function to calculate grade based on marks
+        function calculateGrade(marks) {
+            if (marks >= 80) {
+                return 'A';
+            } else if (marks >= 70) {
+                return 'B';
+            } else if (marks >= 60) {
+                return 'C';
+            } else if (marks >= 50) {
+                return 'D';
+            } else if (marks >= 40) {
+                return 'E';
+            } else {
+                return 'Fail';
+            }
+        }
+
+        // Add event listener to the "Add Row" button
+        addRowBtn.addEventListener('click', function() {
+            // Create a new table row
+            const newRow = document.createElement('tr');
+
+            // Create and append input cells for name, marks, and grade
+            const inputs = ['name', 'marks', 'grade'];
+            inputs.forEach((inputName) => {
+                const newCell = document.createElement('td');
+                const newInput = document.createElement(inputName === 'marks' ? 'input' : 'input');
+                newInput.type = inputName === 'marks' ? 'number' : 'text';
+                newInput.name = `${inputName}[]`;
+                newInput.placeholder = inputName === 'marks' ? `Enter ${inputName} (0-100)` : `Enter ${inputName}`;
+                if (inputName === 'marks') {
+                    newInput.classList.add('marksInput');
+                    newInput.min = 0;
+                    newInput.max = 100;
+                }
+                if (inputName === 'grade') {
+                    newInput.readOnly = true; // Make grade input read-only
+                }
+                newCell.appendChild(newInput);
+                newRow.appendChild(newCell);
+            });
+
+            // Append the new row to the table body
+            tableBody.appendChild(newRow);
+        });
+
+        // Automatically calculate grade when marks are entered
+        document.addEventListener('input', function(event) {
+            if (event.target.classList.contains('marksInput')) {
+                const marksInput = event.target;
+                const marks = parseInt(marksInput.value, 10);
+                const gradeInput = marksInput.parentElement.nextElementSibling.firstElementChild;
+
+                // Validate marks and calculate grade
+                if (!isNaN(marks) && marks >= 0 && marks <= 100) {
+                    gradeInput.value = calculateGrade(marks);
+                } else {
+                    gradeInput.value = ''; // Clear grade if input is invalid
+                }
+            }
+        });
+
+        // Handle form submission
+        document.getElementById('marksForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent default form submission
+
+            // Get form data and process it as needed
+            const formData = new FormData(this);
+            for (const [name, value] of formData) {
+                console.log(`${name}: ${value}`); // Print submitted values
+            }
+        });
+    </script>
+
+</body>
+</html>
