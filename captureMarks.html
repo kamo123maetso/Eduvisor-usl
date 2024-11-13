@@ -5,43 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mathematics - Grade 12 Only</title>
     <style>
-        body {
-            margin: 0;
+         /* CSS */
+         body {
             font-family: Arial, sans-serif;
-            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
         }
 
         header {
-            background-color: #2063e8;
-            padding: 15px 0;
-            text-align: center;
-        }
-
-        header h1 {
-            margin: 0;
-            display: inline-block;
-            font-size: 18px;
-        }
-
-        nav {
-            display: inline-block;
-            margin-left: 50px;
-        }
-        
-        header img {
-            height: 34px;
-        }
-
-        nav a {
-            margin: 0 15px;
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            text-decoration: underline;
-        }
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 10;
+    }
+    header img {
+      height: 50px;
+      margin-right: 20px;
+    }
+    header nav {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
 
         .content {
             margin: 40px auto;
@@ -120,64 +121,201 @@
             width: 100% !important;
             height: auto !important;
         }
+
+        /* Export Button Styles */
+        .buttonDownload {
+            display: inline-block;
+            position: relative;
+            padding: 10px 25px;
+            background-color: #4CC713;
+            color: white;
+            font-family: sans-serif;
+            text-decoration: none;
+            font-size: 0.9em;
+            text-align: center;
+            text-indent: 15px;
+            border: none;
+        }
+
+        .buttonDownload:hover {
+            background-color: #45a21a;
+            color: white;
+        }
+
+        .buttonDownload:before, .buttonDownload:after {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 15px;
+            top: 52%;
+        }
+
+        .buttonDownload:before {
+            width: 10px;
+            height: 2px;
+            border-style: solid;
+            border-width: 0 2px 2px;
+        }
+
+        .buttonDownload:after {
+            width: 0;
+            height: 0;
+            margin-left: 3px;
+            margin-top: -7px;
+            border-style: solid;
+            border-width: 4px 4px 0 4px;
+            border-color: transparent;
+            border-top-color: inherit;
+            animation: downloadArrow 1s linear infinite;
+            animation-play-state: paused;
+        }
+
+        .buttonDownload:hover:before {
+            border-color: #cdefbd;
+        }
+
+        .buttonDownload:hover:after {
+            border-top-color: #cdefbd;
+            animation-play-state: running;
+        }
+
+        @keyframes downloadArrow {
+            0% {
+                margin-top: -7px;
+                opacity: 1;
+            }
+
+            0.001% {
+                margin-top: -15px;
+                opacity: 0.4;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                margin-top: 0;
+                opacity: 0.4;
+            }
+        }
+
+        /* Dropdown Button Styles */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            left: 0;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown:hover .buttonDownload {
+            background-color: #45a21a;
+        }
+
+        /* Scrollable Table Styles */
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+            position: sticky;
+            top: 0;
+            z-index: 5;
+        }
     </style>
 </head>
 <body>
 
     <!-- Header Section -->
     <header>
-        <img src="Eduvisor-removebg-preview.png" alt="">
+        <a href="homepage.html"><img src="Eduvisor-removebg-preview.png" alt="University Logo"></a>
         <nav>
-            <a href="#">Home</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+          <a href="#">Announcements</a>
+          <a href="CALENDER.html">Calendar</a>
+          <a href="#">Discover</a>
+          <a href="gpt.html">Help</a>
         </nav>
-    </header>
+      </header>
 
     <!-- Main Content Section -->
-    <div class="content">
+    <div class="content" style="margin-top: 80px;">
         <h2>Mathematics - Grade 12 Only</h2>
 
-        <!-- Flex container for side-by-side charts -->
         <div class="chart-container-wrapper">
             <div class="chart-container">
                 <h3>Latest Grades</h3>
                 <canvas id="latestGradeChart"></canvas>
             </div>
             <div class="chart-container">
-                <h3>Previous Grades Snapshot</h3>
+                <h3>Previous Grades </h3>
                 <canvas id="previousGradeChart"></canvas>
             </div>
         </div>
 
-        <!-- PDF Export Button -->
-        <button class="btn" onclick="exportPDF()">Export Charts to PDF</button>
-
         <form id="marksForm" style="margin-top: 20px;">
-            <table id="marksTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Marks (0-100)</th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td><input type="text" name="name[]" placeholder="Enter name"></td>
-                        <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
-                        <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
-                    </tr>
-                </tbody>
-            </table>
-            <button type="button" class="btn" id="addRowBtn">Add Row</button>
+            <div class="table-container">
+                <table id="marksTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Marks (0-100)</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td><input type="text" name="name[]" placeholder="Enter name"></td>
+                            <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
+                            <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="dropdown" style="text-align: left;">
+                <button class="buttonDownload">Options</button>
+                <div class="dropdown-content">
+                    <a href="#" id="addRowOption">Add Row</a>
+                    <a href="#" id="exportOption">Export</a>
+                </div>
+            </div>
         </form>
     </div>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>Developed @ EduInnovates</p>
-    </footer>
 
     <!-- Libraries for Chart.js, jsPDF, and html2canvas -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -185,7 +323,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
     <script>
-        const addRowBtn = document.getElementById('addRowBtn');
+        const addRowOption = document.getElementById('addRowOption');
+        const exportOption = document.getElementById('exportOption');
         const tableBody = document.getElementById('tableBody');
         const marksForm = document.getElementById('marksForm');
 
@@ -194,91 +333,105 @@
         const latestGradeChart = new Chart(ctxLatest, {
             type: 'bar',
             data: {
-                labels: [], 
+                labels: [],
                 datasets: [{
                     label: 'Marks',
-                    data: [], 
-                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    data: [],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
                     borderColor: 'rgba(54, 162, 235, 1)',
                     borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
             }
         });
 
-        // Initialize previous snapshot chart
+        // Initialize previous chart
         const ctxPrevious = document.getElementById('previousGradeChart').getContext('2d');
         const previousGradeChart = new Chart(ctxPrevious, {
             type: 'bar',
             data: {
-                labels: [], 
+                labels: [],
                 datasets: [{
                     label: 'Marks',
                     data: [],
-                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     borderColor: 'rgba(255, 99, 132, 1)',
                     borderWidth: 1
                 }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 100
-                    }
-                }
             }
         });
 
-        function calculateGrade(marks) {
-            if (marks >= 80) return 'A';
-            else if (marks >= 70) return 'B';
-            else if (marks >= 60) return 'C';
-            else if (marks >= 50) return 'D';
-            else if (marks >= 40) return 'E';
-            else return 'Fail';
+        // Calculate grade based on mark
+        function calculateGrade(mark) {
+            if (mark >= 80) return 'A';
+            else if (mark >= 70) return 'B';
+            else if (mark >= 60) return 'C';
+            else if (mark >= 50) return 'D';
+            else if (mark >= 40) return 'E';
+            else return 'F';
         }
 
-        addRowBtn.addEventListener('click', function() {
-            const newRow = document.createElement('tr');
-            const inputs = ['name', 'marks', 'grade'];
-            inputs.forEach((inputName) => {
-                const newCell = document.createElement('td');
-                const newInput = document.createElement('input');
-                newInput.type = inputName === 'marks' ? 'number' : 'text';
-                newInput.name = `${inputName}[]`;
-                newInput.placeholder = inputName === 'marks' ? `Enter ${inputName} (0-100)` : `Enter ${inputName}`;
-                if (inputName === 'marks') {
-                    newInput.classList.add('marksInput');
-                    newInput.min = 0;
-                    newInput.max = 100;
-                }
-                if (inputName === 'grade') newInput.readOnly = true;
-                newCell.appendChild(newInput);
-                newRow.appendChild(newCell);
-            });
-            tableBody.appendChild(newRow);
-        });
-
+        // Update charts and prevent duplicate entries
         function updateCharts() {
-            previousGradeChart.data.labels = [...latestGradeChart.data.labels];
-            previousGradeChart.data.datasets[0].data = [...latestGradeChart.data.datasets[0].data];
-            previousGradeChart.update();
+            if (latestGradeChart.data.labels.length > 0 && latestGradeChart.data.datasets[0].data.some(m => m > 0)) {
+                previousGradeChart.data.labels = [...latestGradeChart.data.labels];
+                previousGradeChart.data.datasets[0].data = [...latestGradeChart.data.datasets[0].data];
+                previousGradeChart.update();
+            }
 
             const names = Array.from(marksForm.querySelectorAll('input[name="name[]"]')).map(input => input.value);
             const marks = Array.from(marksForm.querySelectorAll('input[name="marks[]"]')).map(input => parseInt(input.value, 10) || 0);
 
-            latestGradeChart.data.labels = names;
-            latestGradeChart.data.datasets[0].data = marks;
+            latestGradeChart.data.labels = [];
+            latestGradeChart.data.datasets[0].data = [];
+
+            names.forEach((name, index) => {
+                const existingIndex = latestGradeChart.data.labels.indexOf(name);
+
+                if (existingIndex !== -1) {
+                    latestGradeChart.data.datasets[0].data[existingIndex] = marks[index];
+                } else {
+                    latestGradeChart.data.labels.push(name);
+                    latestGradeChart.data.datasets[0].data.push(marks[index]);
+                }
+            });
+
             latestGradeChart.update();
         }
+          // Update this JavaScript function in your existing chatbot code
+document.getElementById("sendButton").addEventListener("click", async () => {
+    const message = document.getElementById("chatInput").value;
+    const chatDisplay = document.getElementById("chatDisplay");
+
+    // Display user message in chat
+    const userMessageDiv = document.createElement("div");
+    userMessageDiv.className = "chat-message self-start bg-zinc-500 text-white max-w-xs rounded-lg px-3 py-1.5 text-sm";
+    userMessageDiv.textContent = message;
+    chatDisplay.appendChild(userMessageDiv);
+
+    // Send user message to Flask backend
+    try {
+        const response = await fetch("http://127.0.0.1:5000/chat", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: message }),
+        });
+        const data = await response.json();
+        
+        // Display bot response in chat
+        const botMessageDiv = document.createElement("div");
+        botMessageDiv.className = "chat-message self-end bg-blue-500 text-white max-w-xs rounded-lg px-3 py-1.5 text-sm";
+        botMessageDiv.textContent = data.response;
+        chatDisplay.appendChild(botMessageDiv);
+
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+    // Clear input field
+    document.getElementById("chatInput").value = "";
+});
 
         document.addEventListener('input', function(event) {
             if (event.target.classList.contains('marksInput')) {
@@ -290,26 +443,26 @@
             }
         });
 
-        async function exportPDF() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
+        addRowOption.addEventListener('click', function(event) {
+            event.preventDefault();
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td><input type="text" name="name[]" placeholder="Enter name"></td>
+                <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
+                <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
+            `;
+            tableBody.appendChild(newRow);
+        });
 
-            const canvas1 = await html2canvas(document.querySelector('#latestGradeChart'));
-            const canvas2 = await html2canvas(document.querySelector('#previousGradeChart'));
-
-            const chartImage1 = canvas1.toDataURL('image/png');
-            const chartImage2 = canvas2.toDataURL('image/png');
-
-            pdf.text("Latest Grades Chart", 15, 15);
-            pdf.addImage(chartImage1, 'PNG', 15, 25, 180, 100);
-
-            pdf.addPage();
-            pdf.text("Previous Grades Snapshot", 15, 15);
-            pdf.addImage(chartImage2, 'PNG', 15, 25, 180, 100);
-
-            pdf.save("Grade_Charts.pdf");
-        }
+        exportOption.addEventListener('click', function(event) {
+            event.preventDefault();
+            const pdf = new jspdf.jsPDF();
+            html2canvas(document.body).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                pdf.addImage(imgData, 'PNG', 0, 0);
+                pdf.save("report.pdf");
+            });
+        });
     </script>
-
 </body>
 </html>

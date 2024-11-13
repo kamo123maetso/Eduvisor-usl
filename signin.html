@@ -24,6 +24,38 @@
         window.location.href = 'homepage.html';
       }
     </script>
+    <style>
+        /* Add your styles here */
+        .loading-spinner {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border: 16px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 16px solid #3498db;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+        }
+    </style>
   </head>
   <body
     x-data="{ page: 'signin', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
@@ -50,7 +82,7 @@
         <span class="rc i pf re pd">
           <span class="du-block h q vd yc">
             <span class="rc i r s eh um tg te rd eb ml jl dl" :class="{ 'ue el': !navigationOpen }"></span>
-            <span class="rc i r s eh um tg te rd eb ml jl fl" :class="{ 'ue qr': !navigationOpen }"></span>
+            <span class="rc i r s eh um tg te rd eb ml jl qr" :class="{ 'ue qr': !navigationOpen }"></span>
             <span class="rc i r s eh um tg te rd eb ml jl gl" :class="{ 'ue hl': !navigationOpen }"></span>
           </span>
           <span class="du-block h q vd yc lf">
@@ -425,5 +457,31 @@
 </button>
 
     <!-- ====== Back To Top End ===== -->
+    <!-- Loading Overlay and Spinner -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner" id="loading-spinner"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const signInForm = document.querySelector('.sb');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            const loadingSpinner = document.getElementById('loading-spinner');
+
+            if (signInForm) {
+                signInForm.addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent the default form submission
+                    loadingOverlay.style.display = 'block';
+                    loadingSpinner.style.display = 'block';
+
+                    setTimeout(function() {
+                        loadingOverlay.style.display = 'none';
+                        loadingSpinner.style.display = 'none';
+                        window.location.href = 'homepage.html'; // Redirect to homepage.html
+                    }, 15000); // 15 seconds delay
+                });
+            }
+        });
+    </script>
   <script defer src="bundle.js"></script></body>
 </html>
