@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eduvisor - School Advisor</title>
+    <style>
+        /* Dark Mode Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+
+        #eduvisor-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            max-width: 600px;
+            background-color: #1e1e1e;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        #eduvisor-header {
+            background-color: #333;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            color: #e0e0e0;
+        }
+
+        #logo {
+            width: 70px;
+            height: 60px;
+            margin-right: 10px;
+        }
+
+        #chat-display {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background-color: #222;
+        }
+
+        .message {
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            max-width: 80%;
+            word-wrap: break-word;
+        }
+
+        .user-message {
+            background-color: #37474f;
+            align-self: flex-end;
+            text-align: right;
+        }
+
+        .eduvisor-message {
+            background-color: #4caf50;
+            align-self: flex-start;
+        }
+
+        #input-container {
+            display: flex;
+            border-top: 1px solid #333;
+        }
+
+        #user-input {
+            flex-grow: 1;
+            padding: 15px;
+            font-size: 1em;
+            background-color: #333;
+            border: none;
+            color: #e0e0e0;
+            outline: none;
+        }
+
+        #send-button {
+            padding: 15px 20px;
+            background-color: #4caf50;
+            color: #e0e0e0;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            outline: none;
+        }
+
+        #send-button:hover {
+            background-color: #66bb6a;
+        }
+    </style>
+</head>
+<body>
+
+<div id="eduvisor-container">
+    <div id="eduvisor-header">
+        <img id="logo" src="Eduvisor-removebg-preview.png" alt="Eduvisor Logo">
+        <p>Welcome!!! Get help from our Ai Friend</p>
+    </div>
+    <div id="chat-display"></div>
+    <div id="input-container">
+        <input type="text" id="user-input" placeholder="Ask Eduvisor about school..." />
+        <button id="send-button">Send</button>
+    </div>
+</div>
+
+<script>
+    // JavaScript
+    const chatDisplay = document.getElementById("chat-display");
+    const userInput = document.getElementById("user-input");
+    const sendButton = document.getElementById("send-button");
+
+    // Sample responses for common school-related queries
+    const responses = {
+        "homework": "To manage your homework, start with a list of all assignments and prioritize based on due date. Take breaks between tasks to stay focused!",
+        "study tips": "For effective studying, create a quiet space, break study sessions into chunks, and test yourself to reinforce learning.",
+        "exams": "Preparing for exams? Make sure to review past papers, get plenty of rest, and stay hydrated. Good luck!",
+        "time management": "Use a planner to schedule your study time, assignments, and breaks. Setting small goals can keep you on track!",
+        "project help": "Divide your project into smaller parts and set a timeline for each. Working in small sections will make the task feel manageable!",
+        "default": "I'm here to help! Try asking about homework, study tips, exams, time management, or project help."
+    };
+
+    // Function to display messages in the chat
+    function displayMessage(text, isEduvisor = false) {
+        const messageElement = document.createElement("div");
+        messageElement.classList.add("message");
+        messageElement.classList.add(isEduvisor ? "eduvisor-message" : "user-message");
+        messageElement.textContent = text;
+        chatDisplay.appendChild(messageElement);
+        chatDisplay.scrollTop = chatDisplay.scrollHeight; // Auto-scroll to the bottom
+    }
+
+    // Function to generate Eduvisor's response
+    function getResponse(userMessage) {
+        const messageLower = userMessage.toLowerCase();
+        for (let key in responses) {
+            if (messageLower.includes(key)) {
+                return responses[key];
+            }
+        }
+        return responses["default"];
+    }
+
+    // Event listener for the Send button
+    sendButton.addEventListener("click", () => {
+        const userMessage = userInput.value.trim();
+        if (userMessage) {
+            displayMessage(userMessage); // Display user message
+            const eduvisorResponse = getResponse(userMessage); // Get Eduvisor's response
+            setTimeout(() => displayMessage(eduvisorResponse, true), 500); // Display Eduvisor response
+            userInput.value = ""; // Clear input field
+        }
+    });
+
+    // Enable Enter key to send messages
+    userInput.addEventListener("keypress", (event) => {
+        if (event.key === "Enter") {
+            sendButton.click();
+        }
+    });
+</script>
+
+</body>
+</html>

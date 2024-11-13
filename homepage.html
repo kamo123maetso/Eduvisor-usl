@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: fixed; /* Make the header fixed */
+      top: 0;
+      left: 0;
+      width: 100%; /* Stretch the header across the screen width */
+      z-index: 10; /* Ensure it stays above other content */
+    }
+    header img {
+      height: 50px;
+      margin-right: 20px;
+    }
+    header nav {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      padding: 20px;
+      padding-top: 100px; /* Add padding to prevent content from hiding behind header */
+    }
+    .section {
+      margin-bottom: 20px;
+      background-color: #fff;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .section h2 {
+      font-size: 18px;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      overflow: hidden;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: 15px;
+      text-decoration: none; /* Remove underline from links */
+      color: inherit; /* Inherit text color */
+      cursor: pointer; /* Change cursor to pointer */
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .card img {
+      width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .card h3 {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .notice-card {
+      padding: 0;
+      text-decoration: none; /* Remove underline from links */
+      color: inherit; /* Inherit text color */
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .notice-card img {
+      height: 290px;
+      width: 100%;
+      border-radius: 5px;
+    }
+
+    /* Hover and Click Effects */
+    .card:hover, .notice-card:hover, .section:hover {
+      transform: scale(1.03); /* Slightly zoom in */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Add a stronger shadow */
+    }
+    .card:active, .notice-card:active, .section:active {
+      transform: scale(1); /* Reset scale on click */
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Slightly different shadow on click */
+      background-color: #f0f0f0; /* Change background color on click */
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Eduvisor-removebg-preview.png" alt="University Logo">
+    <nav>
+      <a href="#">Announcements</a>
+      <a href="CALENDER.html">Calendar</a>
+      <a href="#">Discover</a>
+      <a href="gpt.html">Help</a>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <!-- Courses Section -->
+    <div class="section">
+      <h2>MY Workspace</h2>
+      <div class="grid">
+        <a href="captureMarks.html" class="card">
+          <img src="teachers.jpg" alt="Course Image">
+          <h3>Student Progress</h3>
+          <p>STUDENT PROGRESS• 2024 TERM 1-TERM 4(JAN-DEC)</p>
+        </a>
+        <a href="https://forms.office.com/Pages/DesignPageV2.aspx?prevorigin=Marketing&origin=NeoPortalPage&subpage=design&id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__VNwU1dUMTRYNzVGVFBERTVMUVBBTllCVDZHQUpZMS4u" class="card">
+          <img src="skills.jpg" alt="Course Image">
+          <h3>Personalised quizzes(2024)</h3>
+          <p>Personalised quizzes• 2024 TERM 1-TERM 4(JAN-DEC)</p>
+        </a>
+        <a href="https://www.testpapers.co.za/?srsltid=AfmBOorpRxquH0oqeOQg4l3pA_4tMnCIaWJYIgFwrU7MYI8HHJdaCjM2" class="card">
+          <img src="download.png" alt="Course Image">
+          <h3>Past Materials</h3>
+          <p>Past Materials• 2024 TERM 1-TERM 4(JAN-DEC)</p>
+        </a>
+        <a href="https://www.mathpapa.com/" class="card">
+          <img src="high-angle-family-members-playing-game_23-2149610825.avif" alt="Course Image">
+          <h3>Games</h3>
+          <p>Games• 2024 TERM 1-TERM 4(JAN-DEC)</p>
+        </a>
+        <a href="https://www.safmh.org/help-desk/" class="card">
+          <img src="psycology.jpg" alt="Course Image">
+          <h3>Book a Psychologist</h3>
+          <p>Psychology• 2024 TERM 1-TERM 4(JAN-DEC)</p>
+        </a>
+      </div>
+    </div>
+    
+    <!-- Student Notices Section -->
+    <div class="section">
+      <h2>Teachers Notices</h2>
+      <a href="#" class="notice-card">
+        <img src="message.jpeg" alt="Notice Image">
+        <div style="padding: 15px;">
+          <p><strong>From the Principal Office</strong></p>
+          <p>Good wishes for the 2024 year-end examinations. Stay calm and focused!</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Announcements Section -->
+    <div class="section">
+      <h2>Announcements</h2>
+      <div class="grid">
+        <a href="#" class="card">
+          <h3>Announcement Title 1</h3>
+          <p>Some details about the announcement...</p>
+        </a>
+        <a href="#" class="card">
+          <h3>Announcement Title 2</h3>
+          <p>Some details about the announcement...</p>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
