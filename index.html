@@ -47,39 +47,7 @@
       class="vd wo/4 sd qo f ho oo wf yf"
       :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
     >
-      <nav>
-        <ul class="tc _o sf yo cg ep">
-          <li><a href="index.html" class="xl" :class="{ 'mk': page === 'home' }">Home</a></li>
-          
-          <li class="c i" x-data="{ dropdown: false }">
-            <a
-              href="#"
-              class="xl tc wf yf bg"
-              @click.prevent="dropdown = !dropdown"
-              :class="{ 'mk': page === 'Updates' || page === 'Progress' || page === 'About' }"
-            >
-              Pages
-
-              <svg
-              :class="{ 'wh': dropdown }"
-              class="th mm we fd pf" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z" />
-              </svg>
-            </a>
-
-            <!-- Dropdown Start -->
-            <ul class="a" :class="{ 'tc': dropdown }">
-              <li><a href="index.html" class="xl" :class="{ 'mk': page === 'About' }">Home</a></li>
-              <li><a href="captureMarks.html" class="xl" :class="{ 'mk': page === 'updates' }">Update Marks</a></li>
-              <li><a href="learning.html" class="xl" :class="{ 'mk': page === 'Progress' }">Materials </a></li>
-              
-            </ul>
-            <!-- Dropdown End -->
-          </li>
-          
-        </ul>
-      </nav>
-
+    
       <div class="tc wf ig pb no">
         <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
           <label class="rc ab i">
@@ -93,7 +61,7 @@
           </label>
         </div>
 
-        <a href="login.html" :class="{ 'nk yl' : page === 'home', 'ok' : page === 'home' && stickyMenu }" class="ek pk xl">Login</a>
+        <a href="signin.html" :class="{ 'nk yl' : page === 'home', 'ok' : page === 'home' && stickyMenu }" class="ek pk xl">Login</a>
         
       </div>
     </div>

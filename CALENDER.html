@@ -1,10 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive School Calendar</title>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Dashboard</title>
+  <style>
+   
+    
+    header {
+      background-color: #ffffff;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #ddd;
+      position: fixed; /* Make the header fixed */
+      top: 0;
+      left: 0;
+      width: 100%; /* Stretch the header across the screen width */
+      z-index: 10; /* Ensure it stays above other content */
+    }
+    header img {
+      height: 50px;
+      margin-right: 20px;
+    }
+    header nav {
+      flex: 1;
+      display: flex;
+      gap: 20px;
+    }
+    header nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+    
+    
         /* CSS */
         body {
             font-family: Arial, sans-serif;
@@ -88,11 +118,20 @@
         .event:last-child {
             border-bottom: none;
         }
-    </style>
+    
+  </style>
 </head>
 <body>
-
-<div id="calendar">
+  <header>
+    <img src="Eduvisor-removebg-preview.png" alt="University Logo">
+    <nav>
+      <a href="#">Announcements</a>
+      <a href="CALENDER.html">Calendar</a>
+      <a href="#">Discover</a>
+      <a href="gpt.html">Help</a>
+    </nav>
+  </header>
+  <div id="calendar">
     <div class="month">
         <h1 id="month-year"></h1>
     </div>
@@ -112,8 +151,7 @@
     <h2>Upcoming Events</h2>
     <div id="event-list"></div>
 </div>
-
-<script>
+  <script>
     // JavaScript
     document.addEventListener("DOMContentLoaded", () => {
         const datesContainer = document.getElementById("dates");
@@ -184,6 +222,6 @@
         }
     });
 </script>
-
+  
 </body>
 </html>

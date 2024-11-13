@@ -6,6 +6,44 @@
  * or disable the default devtool with "devtool: false".
  * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
  */
+function onSignIn(googleUser) {
+  // Useful data for your client-side scripts:
+  var profile = googleUser.getBasicProfile();
+  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+  console.log('Full Name: ' + profile.getName());
+  console.log('Given Name: ' + profile.getGivenName());
+  console.log('Family Name: ' + profile.getFamilyName());
+  console.log("Image URL: " + profile.getImageUrl());
+  console.log("Email: " + profile.getEmail());
+
+  // The ID token you need to pass to your backend:
+  var id_token = googleUser.getAuthResponse().id_token;
+  console.log("ID Token: " + id_token);
+
+  // Redirect to homepage
+  window.location.href = 'homepage.html';
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  const signInForm = document.querySelector('.sb');
+  const signUpForm = document.querySelector('.signup-form'); // Assuming the sign-up form has a class 'signup-form'
+  
+  if (signInForm) {
+    signInForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      window.location.href = 'homepage.html'; // Redirect to homepage.html
+    });
+  }
+
+  if (signUpForm) {
+    signUpForm.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent the default form submission
+      alert('Account has been created successfully!');
+      window.location.href = 'homepage.html'; // Redirect to homepage.html
+    });
+  }
+});
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 

@@ -4,10 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sign Up | Base - Tailwind CSS Startup Template</title>
-  <link rel="icon" href="favicon.ico"><link href="style.css" rel="stylesheet"></head>
+    <title>Pundit Digital</title>
+    <link rel="icon" href="favicon.ico">
+    <link href="style.css" rel="stylesheet">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <script>
+      function onSignIn(googleUser) {
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId());
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+
+        window.location.href = 'homepage.html';
+      }
+    </script>
+  </head>
   <body
-    x-data="{ page: 'signup', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
+    x-data="{ page: 'signin', 'darkMode': true, 'stickyMenu': false, 'navigationOpen': false, 'scrollTop': false }"
     x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
          $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))"
@@ -47,7 +66,7 @@
       class="vd wo/4 sd qo f ho oo wf yf"
       :class="{ 'd hh rm sr td ud qg ug jc yh': navigationOpen }"
     >
-      
+    
 
       <div class="tc wf ig pb no">
         <div class="pc h io pa ra" :class="navigationOpen ? '!-ud-visible' : 'd'">
@@ -72,7 +91,7 @@
     <!-- ===== Header End ===== -->
 
     <main>
-      <!-- ===== SignUp Form Start ===== -->
+      <!-- ===== SignIn Form Start ===== -->
       <section class="i pg fh rm ki xn vq gj qp gr hj rp hr">
         <!-- Bg Shapes -->
         <img src="images/shape-06.svg" alt="Shape" class="h j k" />
@@ -80,16 +99,18 @@
         <img src="images/shape-17.svg" alt="Shape" class="h n o" />
         <img src="images/shape-18.svg" alt="Shape" class="h p q" />
 
-        <div class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp">
+        <div
+          class="animate_top bb af i va sg hh sm vk xm yi _n jp hi ao kp"
+        >
           <!-- Bg Border -->
           <span class="rc h r s zd/2 od zg gh"></span>
           <span class="rc h r q zd/2 od xg mh"></span>
 
           <div class="rj">
-            <h2 class="ek ck kk wm xb">Create an Account</h2>
+            <h2 class="ek ck kk wm xb">Sign in to your Account</h2>
             <p>Lorem ipsum dolor sit amet, consectetur</p>
 
-            <h3 class="hk yj kk wm ob mc">Sign up with Social Media</h3>
+            <h3 class="hk yj kk wm ob mc">Sign in with Social Media</h3>
             <ul class="tc wf xf mg ec">
               <li>
                 <a
@@ -168,28 +189,17 @@
               <span class="rc h s z/2 nd oe rh tm"></span>
               <span class="rc h q z/2 nd oe rh tm"></span>
 
-              Or, sign up with your email
+              Or, sign in with your email
             </span>
           </div>
 
-          <form class="sb" action="https://formbold.com/s/unique_form_id" method="POST">
+          <form class="sb" action="homepage.html" method="POST">
             <div class="wb">
-              <label class="rc kk wm vb" for="fullname">Full name</label>
+              <label class="rc kk wm vb" for="username">Username</label>
               <input
                 type="text"
-                name="fullname"
-                id="fullname"
-                placeholder="Devid Wonder"
-                class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
-              />
-            </div>
-
-            <div class="wb">
-              <label class="rc kk wm vb" for="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
+                name="username"
+                id="username"
                 placeholder="example@gmail.com"
                 class="vd hh rg zk _g ch hm dm fm pl/50 xi mi sm xm pm dn/40"
               />
@@ -206,18 +216,25 @@
               />
             </div>
 
-            <button class="vd rj ek rc rg gh lk ml il _l gi hi">
-              Sign Up
+            <button type="submit" class="vd rj ek rc rg gh lk ml il _l gi hi">
+              Sign in
             </button>
 
             <p class="sj hk xj rj ob">
-              Already have an account?
-              <a class="mk" href="signin.html"> Sign In </a>
+              Don't have an account?
+              <a class="mk" href="signup.html"> Sign Up </a>
             </p>
           </form>
+
+          <form class="signup-form" action="homepage.html" method="POST">
+            <!-- Sign-up form fields -->
+            <button type="submit">Sign Up</button>
+          </form>
+
+          <div class="g-signin2" data-onsuccess="onSignIn"></div>
         </div>
       </section>
-      <!-- ===== SignUp Form End ===== -->
+      <!-- ===== SignIn Form End ===== -->
     </main>
     <!-- ===== Footer Start ===== -->
     <footer>
