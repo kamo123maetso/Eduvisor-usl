@@ -75,16 +75,20 @@
 
         th {
             font-weight: bold;
+        } tfoot td span{
+            margin-top: 0;
+            padding: 0;
+            border: none;
         }
 
         .btn {
            justify-content: left;
             margin-top: 10px;
             padding: 10px 20px;
-            background-color: #212121;
-            color: white;
-            border-radius: 10px;
-            border: none;
+          ;
+            color: black;
+            
+        
             cursor: pointer;
             font-size: 16px;
         }
@@ -168,12 +172,12 @@
         margin-left: 25px;
     }
     #eduvisor-header {
-        background-color: #333;
+        background-color: #fff;
         padding: 15px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        color: #e0e0e0;
+        color: #000;
     }
 
     #chat-display {
@@ -239,6 +243,22 @@
         font-size: 0.9em;
         cursor: pointer;
     }
+    .export-btn {
+    align-self: flex-end;
+    margin-top: auto;
+    margin-left: 10px;
+}
+    /* Adjusted styling for the add row symbol */
+    #addRowSymbol {
+        font-size: 24px;
+        cursor: pointer;
+        border: 1px solid #000; /* Small border around the symbol */
+        padding: 5px 10px; /* Adjust padding for a cleaner look */
+        border-radius: 4px; /* Optional: rounded corners */
+        display: inline-block;
+    }
+</style>
+
     </style>
 </head>
 <body>
@@ -250,7 +270,7 @@
           <a href="#">Announcements</a>
           <a href="CALENDER.html">Calendar</a>
           <a href="#">Discover</a>
-          <a href="">Help</a>
+          <a href="index.html">Exit</a>
         </nav>
       </header>
 
@@ -269,38 +289,46 @@
                 <h3>Previous Grades Snapshot</h3>
                 <canvas id="previousGradeChart"></canvas>
             </div>
+            <!-- PDF Export Button aligned to the right -->
+            <button class="btn export-btn" onclick="exportPDF()">GET PDF</button>
         </div>
 
-        <!-- PDF Export Button -->
-        <button class="btn" onclick="exportPDF()">GET PDF</button>
+      <!-- Table with Add Row Symbol -->
+<form id="marksForm" style="margin-top: 20px;">
+    <table id="marksTable">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Marks</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td><input type="text" name="name[]" placeholder="Enter name"></td>
+                <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
+                <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
+            </tr>
+        </tbody>
+        <!-- Add Row Symbol -->
+        <tfoot>
+            <tr>
+                <td colspan="3" style="text-align: left;">
+                    <span id="addRowSymbol" style="font-size: 24px; cursor: pointer;">+</span>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    
+</form>
 
-        <form id="marksForm" style="margin-top: 20px;">
-            <table id="marksTable">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Marks </th>
-                        <th>Grade</th>
-                    </tr>
-                </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td><input type="text" name="name[]" placeholder="Enter name"></td>
-                        <td><input type="number" name="marks[]" placeholder="Enter marks" min="0" max="100" class="marksInput"></td>
-                        <td><input type="text" name="grade[]" placeholder="Grade" readonly></td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <button type="button" class="btn" id="addRowBtn">Add Row</button>
-        </form>
     </div>
     <button id="open-chatbot-button">FAQ</button>
 
     <!-- Chatbot Popup -->
     <div id="eduvisor-container">
         <div id="eduvisor-header">
-            <img src="images__1_-removebg-preview.png" alt="">
+            <img src="ALMOST-removebg-preview.png" alt="">
             <p><b>Hello Teacher</b></p>
             <button id="close-chatbot-button">Close</button>
         </div>
@@ -380,26 +408,29 @@
             else return 'Fail';
         }
 
-        addRowBtn.addEventListener('click', function() {
-            const newRow = document.createElement('tr');
-            const inputs = ['name', 'marks', 'grade'];
-            inputs.forEach((inputName) => {
-                const newCell = document.createElement('td');
-                const newInput = document.createElement('input');
-                newInput.type = inputName === 'marks' ? 'number' : 'text';
-                newInput.name = `${inputName}[]`;
-                newInput.placeholder = inputName === 'marks' ? `Enter ${inputName} (0-100)` : `Enter ${inputName}`;
-                if (inputName === 'marks') {
-                    newInput.classList.add('marksInput');
-                    newInput.min = 0;
-                    newInput.max = 100;
-                }
-                if (inputName === 'grade') newInput.readOnly = true;
-                newCell.appendChild(newInput);
-                newRow.appendChild(newCell);
-            });
-            tableBody.appendChild(newRow);
-        });
+       // Event listener for the "+" symbol to add a new row
+const addRowSymbol = document.getElementById('addRowSymbol');
+
+addRowSymbol.addEventListener('click', function() {
+    const newRow = document.createElement('tr');
+    const inputs = ['name', 'marks', 'grade'];
+    inputs.forEach((inputName) => {
+        const newCell = document.createElement('td');
+        const newInput = document.createElement('input');
+        newInput.type = inputName === 'marks' ? 'number' : 'text';
+        newInput.name = `${inputName}[]`;
+        newInput.placeholder = inputName === 'marks' ? `Enter ${inputName} (0-100)` : `Enter ${inputName}`;
+        if (inputName === 'marks') {
+            newInput.classList.add('marksInput');
+            newInput.min = 0;
+            newInput.max = 100;
+        }
+        if (inputName === 'grade') newInput.readOnly = true;
+        newCell.appendChild(newInput);
+        newRow.appendChild(newCell);
+    });
+    tableBody.appendChild(newRow);
+});
 
         function updateCharts() {
             previousGradeChart.data.labels = [...latestGradeChart.data.labels];
