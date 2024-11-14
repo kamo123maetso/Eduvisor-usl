@@ -132,46 +132,159 @@
       max-width: 100%;
       border-radius: 8px;
     }
+
+    /* Chatbot Styles */
+    #open-chatbot-button {
+        background-color: #4caf50;
+        color: #e0e0e0;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 20px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+    }
+
+    #open-chatbot-button:hover {
+        background-color: #66bb6a;
+    }
+
+    #eduvisor-container {
+        display: none;
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 100%;
+        max-width: 400px;
+        height: 500px;
+        background-color: #1e1e1e;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+        flex-direction: column;
+        border-radius: 8px;
+        overflow: hidden;
+        z-index: 1000;
+    }
+    #eduvisor-header img {
+        height: 40px;
+        margin-left: 15px;
+    }
+
+    #eduvisor-header {
+        background-color: #333;
+        padding: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #e0e0e0;
+    }
+
+    #chat-display {
+        flex-grow: 1;
+        padding: 15px;
+        overflow-y: auto;
+        background-color: #222;
+    }
+
+    .message {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 8px;
+        max-width: 80%;
+        word-wrap: break-word;
+    }
+
+    .user-message {
+        background-color: #37474f;
+        align-self: flex-end;
+        text-align: right;
+    }
+
+    .eduvisor-message {
+        background-color: #4caf50;
+        align-self: flex-start;
+    }
+
+    #input-container {
+        display: flex;
+        border-top: 1px solid #333;
+    }
+
+    #user-input {
+        flex-grow: 1;
+        padding: 10px;
+        font-size: 1em;
+        background-color: #333;
+        border: none;
+        color: #e0e0e0;
+        outline: none;
+    }
+
+    #send-button {
+        padding: 10px 15px;
+        background-color: #4caf50;
+        color: #e0e0e0;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        outline: none;
+    }
+
+    #send-button:hover {
+        background-color: #66bb6a;
+    }
+
+    #close-chatbot-button {
+        background-color: #444;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        font-size: 0.9em;
+        cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <header>
-    <a href="homepage.html"><img  src="Eduvisor-removebg-preview.png" alt="Logo"></a>
+    <a href="homepage.html"><img  src="Eduvisor-removebg-preview.png" alt="University Logo"></a>
     <nav>
       <a href="#">Announcements</a>
       <a href="CALENDER.html">Calendar</a>
       <a href="#">Discover</a>
-      <a href="gpt.html">Help</a>
+      <a href="">Help</a>
     </nav>
   </header>
   
   <div class="container">
     <!-- Courses Section -->
     <div class="section">
-      <h2>MY Workspace</h2>
+      <h2>My Workspace</h2>
       <div class="grid">
         <a href="captureMarks.html" class="card">
-          <img src="teachers.jpg" alt="Course Image">
+          <img src="red-arrow-with-drawings-bulbs_1134-383.avif" alt="Course Image">
           <h3>Student Progress</h3>
           <p>STUDENT PROGRESS• 2024 TERM 1-TERM 4(JAN-DEC)</p>
         </a>
         <a href="https://forms.office.com/Pages/DesignPageV2.aspx?prevorigin=Marketing&origin=NeoPortalPage&subpage=design&id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAO__VNwU1dUMTRYNzVGVFBERTVMUVBBTllCVDZHQUpZMS4u" class="card">
-          <img src="skills.jpg" alt="Course Image">
+          <img src="multiple-option-quiz-banner-your-exam-test_1017-45316.avif" alt="Course Image">
           <h3>Personalised quizzes(2024)</h3>
           <p>PERSONALISED QUIZZES• 2024 TERM 1-TERM 4(JAN-DEC)</p>
         </a>
-        <a href="https://www.testpapers.co.za/?srsltid=AfmBOorpRxquH0oqeOQg4l3pA_4tMnCIaWJYIgFwrU7MYI8HHJdaCjM2" class="card">
-          <img src="download.png" alt="Course Image">
+        <a href="https://www.testpapers.co.za/gr12-mathematics?srsltid=AfmBOopV3JTk26waJ1U-ME52467bb2HgCRSoPMc6_LUW6nqIxYXiVfRm" class="card">
+          <img src="still-life-documents-stack_23-2151088776.avif" alt="Course Image">
           <h3>Past Materials</h3>
           <p>PAST MATERIALS• 2024 TERM 1-TERM 4(JAN-DEC)</p>
         </a>
-        <a href="https://www.mathpapa.com/" class="card">
+        <a href="https://www.geogebra.org/m/xyz123" class="card">
           <img src="high-angle-family-members-playing-game_23-2149610825.avif" alt="Course Image">
           <h3>Games(2024)</h3>
           <p>Games• 2024 TERM 1-TERM 4(JAN-DEC)</p>
         </a>
         <a href="https://www.safmh.org/help-desk/" class="card">
-          <img src="psycology.jpg" alt="Course Image">
+          <img src="mental-health-emotions-disorders-concept_53876-167100.avif" alt="Course Image">
           <h3>Book a Psychologist</h3>
           <p>Psychology• 2024 TERM 1-TERM 4(JAN-DEC)</p>
         </a>
@@ -182,7 +295,7 @@
     <div class="section">
       <h2>Teachers Notices</h2>
       <a href="#" class="notice-card">
-        <img src="deal-approval-arrangement-union-alliance-factors_53876-13787.avif" alt="Notice Image">
+        <img src="reminder-popup-bell-notification-alert-alarm-icon-sign-symbol-application-website-ui-purple-background-3d-rendering-illustration_56104-1304.avif" alt="Notice Image">
         <div style="padding: 15px;">
           <p><strong>From the Principal Office</strong></p>
           <p>Good wishes for the 2024 year-end examinations. Stay calm and focused!</p>
@@ -195,18 +308,99 @@
       <h2>Announcements</h2>
       <div class="grid">
         <a href="#" class="card">
-          <img src="coming-soon-background-with-spot-light-design_1017-25515.avif" alt="Notice Image">
-          <h3>Announcements Comming sooon </h3>
+          <img src="hourglass-sand-against-background-starry-sky_1268-28710.jpg" alt="Notice Image">
+          <h3>Coming Soon!!! </h3>
          
          
         </a>
         <a href="#" class="card">
-          <img src="coming-soon-background-with-spot-light-design_1017-25515.avif" alt="Notice Image">
-          <h3>Announcement Comming</h3>
+          <img src="hourglass-sand-against-background-starry-sky_1268-28710.jpg" alt="Notice Image">
+          <h3>Coming Soon!!!</h3>
          
         </a>
       </div>
     </div>
   </div>
+
+  <!-- Popup Button -->
+  <button id="open-chatbot-button">FAQ</button>
+
+  <!-- Chatbot Popup -->
+  <div id="eduvisor-container">
+      <div id="eduvisor-header">
+          <img src="images__1_-removebg-preview.png" alt="">
+          <p><b>Hello Teacher</b></p>
+          <button id="close-chatbot-button">Close</button>
+      </div>
+      <div id="chat-display"></div>
+      <div id="input-container">
+          <input type="text" id="user-input" placeholder="Ask Eduvisor about school..." />
+          <button id="send-button">Send</button>
+      </div>
+  </div>
+
+  <script>
+      // JavaScript for Popup Control
+      const chatbotContainer = document.getElementById("eduvisor-container");
+      const openChatbotButton = document.getElementById("open-chatbot-button");
+      const closeChatbotButton = document.getElementById("close-chatbot-button");
+
+      openChatbotButton.addEventListener("click", () => {
+          chatbotContainer.style.display = "flex";
+      });
+
+      closeChatbotButton.addEventListener("click", () => {
+          chatbotContainer.style.display = "none";
+      });
+
+      // Chatbot functionality
+      const chatDisplay = document.getElementById("chat-display");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-button");
+
+      const responses = {
+          "homework": "To manage your homework, start with a list of all assignments and prioritize based on due date. Take breaks between tasks to stay focused!",
+          "study tips": "For effective studying, create a quiet space, break study sessions into chunks, and test yourself to reinforce learning.",
+          "exams": "Preparing for exams? Make sure to review past papers, get plenty of rest, and stay hydrated. Good luck!",
+          "time management": "Use a planner to schedule your study time, assignments, and breaks. Setting small goals can keep you on track!",
+          "project help": "Divide your project into smaller parts and set a timeline for each. Working in small sections will make the task feel manageable!",
+          "default": "I'm here to help! Try asking about homework, study tips, exams, time management, or project help."
+      };
+
+      function displayMessage(text, isEduvisor = false) {
+          const messageElement = document.createElement("div");
+          messageElement.classList.add("message");
+          messageElement.classList.add(isEduvisor ? "eduvisor-message" : "user-message");
+          messageElement.textContent = text;
+          chatDisplay.appendChild(messageElement);
+          chatDisplay.scrollTop = chatDisplay.scrollHeight;
+      }
+
+      function getResponse(userMessage) {
+          const messageLower = userMessage.toLowerCase();
+          for (let key in responses) {
+              if (messageLower.includes(key)) {
+                  return responses[key];
+              }
+          }
+          return responses["default"];
+      }
+
+      sendButton.addEventListener("click", () => {
+          const userMessage = userInput.value.trim();
+          if (userMessage) {
+              displayMessage(userMessage); // Display user message
+              const eduvisorResponse = getResponse(userMessage); // Get Eduvisor's response
+              setTimeout(() => displayMessage(eduvisorResponse, true), 500); // Display Eduvisor response
+              userInput.value = ""; // Clear input field
+          }
+      });
+
+      userInput.addEventListener("keypress", (event) => {
+          if (event.key === "Enter") {
+              sendButton.click();
+          }
+      });
+  </script>
 </body>
 </html>

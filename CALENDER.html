@@ -1,12 +1,10 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>University Dashboard</title>
   <style>
-   
-    
     header {
       background-color: #ffffff;
       padding: 20px;
@@ -34,91 +32,212 @@
       font-weight: bold;
     }
     
-    
-        /* CSS */
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            height: 100vh;
-            margin: 0;
-            background-color: #f4f4f9;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
 
-        #calendar {
-            width: 90%;
-            max-width: 600px;
-            border: 1px solid #ddd;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
+    #calendar {
+      width: 90%;
+      max-width: 600px;
+      border: 1px solid #ddd;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
 
-        .month h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
+    .month h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
 
-        .days, .dates {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            text-align: center;
-            gap: 5px;
-        }
+    .days, .dates {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+      gap: 5px;
+    }
 
-        .day, .date {
-            padding: 10px;
-            font-size: 14px;
-            color: #666;
-        }
+    .day, .date {
+      padding: 10px;
+      font-size: 14px;
+      color: #666;
+    }
 
-        .day {
-            font-weight: bold;
-            color: #444;
-        }
+    .day {
+      font-weight: bold;
+      color: #444;
+    }
 
-        .date {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.2s, color 0.2s;
-        }
+    .date {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
 
-        .date:hover {
-            background-color: #5a9;
-            color: #fff;
-        }
+    .date:hover {
+      background-color: #5a9;
+      color: #fff;
+    }
 
-        #upcoming-events {
-            width: 90%;
-            max-width: 600px;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
+    #upcoming-events {
+      width: 90%;
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
 
-        #upcoming-events h2 {
-            color: #333;
-            text-align: center;
-            margin-top: 0;
-        }
+    #upcoming-events h2 {
+      color: #333;
+      text-align: center;
+      margin-top: 0;
+    }
 
-        .event {
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-            font-size: 14px;
-        }
+    .event {
+      padding: 5px;
+      border-bottom: 1px solid #ddd;
+      font-size: 14px;
+    }
 
-        .event:last-child {
-            border-bottom: none;
-        }
-    
+    .event:last-child {
+      border-bottom: none;
+    }
+
+    #open-chatbot-button {
+      background-color: #4caf50;
+      color: #e0e0e0;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+
+    #open-chatbot-button:hover {
+      background-color: #66bb6a;
+    }
+
+    #eduvisor-container {
+      display: none;
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 100%;
+      max-width: 400px;
+      height: 500px;
+      background-color: #1e1e1e;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+      flex-direction: column;
+      border-radius: 8px;
+      overflow: hidden;
+      z-index: 1000;
+    }
+
+    #eduvisor-header {
+      background-color: #333;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #e0e0e0;
+    }
+
+    #chat-display {
+      flex-grow: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background-color: #222;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      background-color: #37474f;
+      align-self: flex-end;
+      text-align: right;
+    }
+
+    .eduvisor-message {
+      background-color: #4caf50;
+      align-self: flex-start;
+    }
+
+    #input-container {
+      display: flex;
+      border-top: 1px solid #333;
+    }
+
+    #user-input {
+      flex-grow: 1;
+      padding: 10px;
+      font-size: 1em;
+      background-color: #333;
+      border: none;
+      color: #e0e0e0;
+      outline: none;
+    }
+
+    #send-button {
+      padding: 10px 15px;
+      background-color: #4caf50;
+      color: #e0e0e0;
+      border: none;
+      cursor: pointer;
+      font-size: 1em;
+      outline: none;
+    }
+
+    #send-button:hover {
+      background-color: #66bb6a;
+    }
+
+    #close-chatbot-button {
+      background-color: #444;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      font-size: 0.9em;
+      cursor: pointer;
+    }
+
+    /* New animation for event dates */
+    @keyframes fadeRed {
+      0% {
+        background-color: red;
+        color: white;
+      }
+      100% {
+        background-color: transparent;
+        color: inherit;
+      }
+    }
+
+    .date.event-highlight {
+      animation: fadeRed 1s ease-in-out;
+    }
   </style>
 </head>
 <body>
@@ -128,7 +247,7 @@
       <a href="#">Announcements</a>
       <a href="CALENDER.html">Calendar</a>
       <a href="#">Discover</a>
-      <a href="gpt.html">Help</a>
+      <a href="">Help</a>
     </nav>
   </header>
   <div id="calendar">
@@ -145,83 +264,138 @@
         <div class="day">Sun</div>
     </div>
     <div class="dates" id="dates"></div>
-</div>
+  </div>
 
-<div id="upcoming-events">
+  <div id="upcoming-events">
     <h2>Upcoming Events</h2>
     <div id="event-list"></div>
-</div>
+  </div>
+
+  <button id="open-chatbot-button">FAQ</button>
+
+  <div id="eduvisor-container">
+    <div id="eduvisor-header">
+      <p>Eduvisor Chatbot</p>
+      <button id="close-chatbot-button">Close</button>
+    </div>
+    <div id="chat-display"></div>
+    <div id="input-container">
+      <input type="text" id="user-input" placeholder="Ask Eduvisor about school..." />
+      <button id="send-button">Send</button>
+    </div>
+  </div>
+
   <script>
-    // JavaScript
     document.addEventListener("DOMContentLoaded", () => {
-        const datesContainer = document.getElementById("dates");
-        const monthYearLabel = document.getElementById("month-year");
-        const eventList = document.getElementById("event-list");
-        let events = [];
+      const datesContainer = document.getElementById("dates");
+      const monthYearLabel = document.getElementById("month-year");
+      const eventList = document.getElementById("event-list");
+      let events = [];
 
-        // Get current date info
-        const today = new Date();
-        const currentYear = today.getFullYear();
-        const currentMonth = today.getMonth();
+      const today = new Date();
+      const currentYear = today.getFullYear();
+      const currentMonth = today.getMonth();
 
-        // Display current month and year
-        const monthNames = ["January", "February", "March", "April", "May", "June", 
-                            "July", "August", "September", "October", "November", "December"];
-        monthYearLabel.textContent = `${monthNames[currentMonth]} ${currentYear}`;
+      const monthNames = ["January", "February", "March", "April", "May", "June", 
+                          "July", "August", "September", "October", "November", "December"];
+      monthYearLabel.textContent = `${monthNames[currentMonth]} ${currentYear}`;
 
-        // Get the number of days in the current month
-        const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+      const startDay = new Date(currentYear, currentMonth, 1).getDay();
+      const adjustedStartDay = startDay === 0 ? 6 : startDay - 1;
 
-        // Get the starting day of the month (0 = Sunday, 6 = Saturday)
-        const startDay = new Date(currentYear, currentMonth, 1).getDay();
+      for (let i = 0; i < adjustedStartDay; i++) {
+          const blankDay = document.createElement("div");
+          blankDay.classList.add("date");
+          datesContainer.appendChild(blankDay);
+      }
 
-        // Adjust to make Monday the first column (JavaScript treats Sunday as 0)
-        const adjustedStartDay = startDay === 0 ? 6 : startDay - 1;
+      for (let day = 1; day <= daysInMonth; day++) {
+          const dateElement = document.createElement("div");
+          dateElement.classList.add("date");
+          dateElement.textContent = day;
+          dateElement.addEventListener("click", () => {
+              const eventName = prompt("Enter event name:");
+              if (eventName) {
+                  const eventDate = new Date(currentYear, currentMonth, day);
+                  events.push({ date: eventDate, name: eventName });
+                  updateUpcomingEvents();
+              }
+          });
+          
+      // Chatbot functionality
+      const chatDisplay = document.getElementById("chat-display");
+      const userInput = document.getElementById("user-input");
+      const sendButton = document.getElementById("send-button");
 
-        // Fill in blank days before the first day of the month
-        for (let i = 0; i < adjustedStartDay; i++) {
-            const blankDay = document.createElement("div");
-            blankDay.classList.add("date");
-            datesContainer.appendChild(blankDay);
-        }
+      const responses = {
+          "homework": "To manage your homework, start with a list of all assignments and prioritize based on due date. Take breaks between tasks to stay focused!",
+          "study tips": "For effective studying, create a quiet space, break study sessions into chunks, and test yourself to reinforce learning.",
+          "exams": "Preparing for exams? Make sure to review past papers, get plenty of rest, and stay hydrated. Good luck!",
+          "time management": "Use a planner to schedule your study time, assignments, and breaks. Setting small goals can keep you on track!",
+          "project help": "Divide your project into smaller parts and set a timeline for each. Working in small sections will make the task feel manageable!",
+          "default": "I'm here to help! Try asking about homework, study tips, exams, time management, or project help."
+      };
+          datesContainer.appendChild(dateElement);
+      }
 
-        // Populate the dates of the current month
-        for (let day = 1; day <= daysInMonth; day++) {
-            const dateElement = document.createElement("div");
-            dateElement.classList.add("date");
-            dateElement.textContent = day;
-            datesContainer.appendChild(dateElement);
+      function updateUpcomingEvents() {
+          eventList.innerHTML = '';
+          events.sort((a, b) => a.date - b.date);
 
-            // Click event to add an event on a specific date
-            dateElement.addEventListener("click", () => {
-                const eventName = prompt("Enter the event name:");
-                if (eventName) {
-                    const eventDate = new Date(currentYear, currentMonth, day);
-                    events.push({ name: eventName, date: eventDate });
-                    updateUpcomingEvents();
-                }
-            });
-        }
+          document.querySelectorAll('.date').forEach(date => {
+              date.classList.remove('event-highlight');
+          });
 
-        // Function to update the list of upcoming events
-        function updateUpcomingEvents() {
-            // Clear current events
-            eventList.innerHTML = '';
+          events.forEach(event => {
+              const eventDiv = document.createElement("div");
+              eventDiv.classList.add("event");
+              const eventDateStr = `${event.date.getDate()} ${monthNames[event.date.getMonth()]}`;
+              eventDiv.textContent = `${eventDateStr}: ${event.name}`;
+              eventList.appendChild(eventDiv);
 
-            // Sort events by date
-            events.sort((a, b) => a.date - b.date);
+              const eventDay = event.date.getDate();
+              const dateElement = datesContainer.querySelector(`.date:nth-child(${adjustedStartDay + eventDay})`);
+              if (dateElement) {
+                  dateElement.classList.add('event-highlight');
+              }
+          });
+      }
 
-            // Display upcoming events
-            events.forEach(event => {
-                const eventDiv = document.createElement("div");
-                eventDiv.classList.add("event");
-                const eventDateStr = `${event.date.getDate()} ${monthNames[event.date.getMonth()]}`;
-                eventDiv.textContent = `${eventDateStr}: ${event.name}`;
-                eventList.appendChild(eventDiv);
-            });
-        }
+      document.getElementById("open-chatbot-button").addEventListener("click", function() {
+          document.getElementById("eduvisor-container").style.display = "flex";
+      });
+
+      document.getElementById("close-chatbot-button").addEventListener("click", function() {
+          document.getElementById("eduvisor-container").style.display = "none";
+      });
+
+      document.getElementById("send-button").addEventListener("click", sendMessage);
+
+      document.getElementById("user-input").addEventListener("keypress", function(event) {
+          if (event.key === "Enter") {
+              sendMessage();
+          }
+      });
+
+      function sendMessage() {
+          const userInput = document.getElementById("user-input");
+          const message = userInput.value.trim();
+          if (message === "") return;
+
+          const userMessageDiv = document.createElement("div");
+          userMessageDiv.classList.add("message", "user-message");
+          userMessageDiv.textContent = message;
+          document.getElementById("chat-display").appendChild(userMessageDiv);
+          userInput.value = "";
+
+          const botResponseDiv = document.createElement("div");
+          botResponseDiv.classList.add("message", "eduvisor-message");
+          botResponseDiv.textContent = "I’m here to help!";
+          document.getElementById("chat-display").appendChild(botResponseDiv);
+          document.getElementById("chat-display").scrollTop = document.getElementById("chat-display").scrollHeight;
+      }
     });
-</script>
-  
+  </script>
 </body>
 </html>
