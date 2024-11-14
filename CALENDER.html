@@ -151,12 +151,12 @@
     }
 
     #eduvisor-header {
-      background-color: #333;
+      background-color: #fff;
       padding: 15px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      color: #e0e0e0;
+      color: #000;
     }
 
     #chat-display {
@@ -238,6 +238,10 @@
     .date.event-highlight {
       animation: fadeRed 1s ease-in-out;
     }
+    #eduvisor-header img {
+        height: 40px;
+        margin-left: 15px;
+    }
   </style>
 </head>
 <body>
@@ -275,7 +279,8 @@
 
   <div id="eduvisor-container">
     <div id="eduvisor-header">
-      <p>Eduvisor Chatbot</p>
+      <img src="ALMOST-removebg-preview.png" alt="">
+      <p>Eduvisor Assistant</p>
       <button id="close-chatbot-button">Close</button>
     </div>
     <div id="chat-display"></div>

@@ -327,9 +327,10 @@
 
     <!-- Chatbot Popup -->
     <div id="eduvisor-container">
+        
         <div id="eduvisor-header">
             <img src="ALMOST-removebg-preview.png" alt="">
-            <p><b>Hello Teacher</b></p>
+            <p><b>Eduvisor Assistant</b></p>
             <button id="close-chatbot-button">Close</button>
         </div>
         <div id="chat-display"></div>
@@ -345,6 +346,8 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.21/jspdf.plugin.autotable.min.js"></script>
+
 
     <script>
         const addRowBtn = document.getElementById('addRowBtn');
@@ -456,24 +459,60 @@ addRowSymbol.addEventListener('click', function() {
         });
 
         async function exportPDF() {
-            const { jsPDF } = window.jspdf;
-            const pdf = new jsPDF();
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF();
 
-            const canvas1 = await html2canvas(document.querySelector('#latestGradeChart'));
-            const canvas2 = await html2canvas(document.querySelector('#previousGradeChart'));
+    // Generate the charts as images
+    const canvas1 = await html2canvas(document.querySelector('#latestGradeChart'));
+    const canvas2 = await html2canvas(document.querySelector('#previousGradeChart'));
 
-            const chartImage1 = canvas1.toDataURL('image/png');
-            const chartImage2 = canvas2.toDataURL('image/png');
+    const chartImage1 = canvas1.toDataURL('image/png');
+    const chartImage2 = canvas2.toDataURL('image/png');
 
-            pdf.text("Latest Grades Chart", 15, 15);
-            pdf.addImage(chartImage1, 'PNG', 15, 25, 180, 100);
+    // Add both charts on the same page, adjusting their sizes and positions
+    pdf.text("Latest Grades and Previous Grades Snapshot", 15, 15);
 
-            pdf.addPage();
-            pdf.text("Previous Grades Snapshot", 15, 15);
-            pdf.addImage(chartImage2, 'PNG', 15, 25, 180, 100);
+    // Set the width and height for both charts
+    const chartWidth = 75;  // Adjust this value to reduce the size
+    const chartHeight = 60;  // Adjust this value to reduce the size
 
-            pdf.save("Grade_Charts.pdf");
-        }
+    // Add the first chart to the PDF
+    pdf.addImage(chartImage1, 'PNG', 10, 25, chartWidth, chartHeight);
+
+    // Add the second chart to the PDF, next to the first one
+    pdf.addImage(chartImage2, 'PNG', 90, 25, chartWidth, chartHeight);
+
+    // Add a new page for the table content
+    pdf.addPage();
+    pdf.text("Student Marks and Grades", 15, 15);
+
+    // Get the data from the table
+    const tableData = [];
+    const rows = document.querySelectorAll('#marksTable tbody tr');
+    rows.forEach(row => {
+        const rowData = [];
+        row.querySelectorAll('input').forEach(input => {
+            rowData.push(input.value);
+        });
+        tableData.push(rowData);
+    });
+
+    // Add table headers
+    const headers = ["Name", "Marks", "Grade"];
+    pdf.autoTable({
+        head: [headers],
+        body: tableData,
+        startY: 30, // Start the table below the title
+        theme: 'grid', // Use a grid-style theme for the table
+        headStyles: { fillColor: [22, 160, 133] }, // Optional: table header color
+        margin: { top: 20 }, // Adjust margin for better spacing
+    });
+
+    // Save the generated PDF
+    pdf.save("Grade_Charts_and_Marks.pdf");
+}
+
+
           // JavaScript for Popup Control
       const chatbotContainer = document.getElementById("eduvisor-container");
       const openChatbotButton = document.getElementById("open-chatbot-button");
@@ -493,13 +532,31 @@ addRowSymbol.addEventListener('click', function() {
       const sendButton = document.getElementById("send-button");
 
       const responses = {
-          "homework": "To manage your homework, start with a list of all assignments and prioritize based on due date. Take breaks between tasks to stay focused!",
-          "study tips": "For effective studying, create a quiet space, break study sessions into chunks, and test yourself to reinforce learning.",
-          "exams": "Preparing for exams? Make sure to review past papers, get plenty of rest, and stay hydrated. Good luck!",
-          "time management": "Use a planner to schedule your study time, assignments, and breaks. Setting small goals can keep you on track!",
-          "project help": "Divide your project into smaller parts and set a timeline for each. Working in small sections will make the task feel manageable!",
-          "default": "I'm here to help! Try asking about homework, study tips, exams, time management, or project help."
-      };
+    "homework": "Homework can pile up fast! Try setting aside a regular time each day to tackle it, and reward yourself with a little break after each task. Even a small effort each day makes a big difference in the long run!",
+    
+    "study tips": "Studying doesn’t have to be a chore. Try finding what works best for you—some people love listening to music, others need total silence. Mix it up sometimes with study games, or see if teaching a friend helps you remember better!",
+    
+    "exams": "Exam prep can be intense. Focus on the topics that seem tricky, and try practice questions if you have them. Remember to take care of yourself—good sleep and some downtime can help more than cramming all night!",
+    
+    "time management": "Managing time is tough but worth it! Use a planner or even just a to-do list on your phone. Balance your study time with some relaxation, and don’t forget to celebrate small wins along the way. A good routine can make a huge difference!",
+    
+    "project help": "Projects can feel overwhelming, but tackling them one step at a time makes it easier. Map out each stage, and set a timeline for each part. Don’t be afraid to ask for help if you get stuck. Teamwork can make projects so much easier to handle!",
+    
+    "mental health": "Life can get overwhelming sometimes, especially with school and other responsibilities. Take time for yourself, whether it's reading a book, going for a walk, or chatting with a friend. Remember, mental health is just as important as physical health!",
+    
+    "stress": "When stress builds up, it’s okay to step back and take a break. Try deep breathing exercises or write down what’s on your mind. Taking it one step at a time can make challenges feel more manageable.",
+    
+    "motivation": "We all have days where motivation is hard to find. Sometimes changing your environment or listening to music can help lift your mood. Set small, achievable goals to get started. Once you get going, it often becomes easier!",
+    
+    "focus": "Staying focused can be a challenge, especially with distractions all around. Try the Pomodoro Technique (25 minutes work, 5-minute break) or a change of scenery. Don’t be too hard on yourself—everyone needs a little reset now and then!",
+    
+    "self-care": "Self-care is so important! Take time each day to do something you enjoy, even if it’s small. Watch a favorite show, try out a hobby, or go for a walk. Looking after yourself helps you stay energized and positive.",
+    
+    "friendships": "Balancing friendships with school can be tricky. Try setting aside time to study together or catch up during breaks. Good friends support each other, even if it’s just sending a quick text to check in!",
+    
+    "default": "Hey there! I’m here to chat about school, life, or anything on your mind. From homework tips to managing stress, let’s take it one step at a time. Reach out anytime you need a little advice or just someone to talk to!"
+};
+
 
       function displayMessage(text, isEduvisor = false) {
           const messageElement = document.createElement("div");
